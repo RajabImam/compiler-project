@@ -21,4 +21,17 @@ The currency symbolin my country is a strikethrough ~~N~~
 --- Sometimes horizontal line is useful for my website ui
 
 ` This is for the inline code`
-``` block code is some we also see mostly ``` 
+``` block code is some we also see mostly ```
+
+```xsvg:0,0,20,10 line 0,0 10,0 red```
+
+```xsvg:0,0,20,20
+polyline 0,0 5,5
+10,10 15,15 red
+```
+
+```xsvg:0,0,20,20
+polygon 0,0 20,0 0,20
+blue red
+```
+ 
