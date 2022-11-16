@@ -20,8 +20,8 @@ my_object->my_attribute = something;
 
 SvgCoord* new_svg_coord(int x, int y) {
     SvgCoord* svg_coord = malloc(sizeof(SvgCoord));
-
-    // COMPLETE HERE
+	svg_coord->x = x;
+	svg_coord->y = y;
 
     return svg_coord;
 }
@@ -29,23 +29,27 @@ SvgCoord* new_svg_coord(int x, int y) {
 SvgCoordList* new_svg_coord_list(SvgCoord* svg_coord) {
     SvgCoordList* svg_coord_list = malloc(sizeof(SvgCoordList));
 
-    // COMPLETE HERE
-
+    svg_coord_list->coord = svg_coord;
+    svg_coord_list->next = NULL;
+  
     return svg_coord_list;
 }
 
 SvgInst* new_svg_inst(SvgInstKind kind, SvgCoordList* coords) {
     SvgInst* svg_inst = malloc(sizeof(SvgInst));
-
-    // COMPLETE HERE
-
+  
+    svg_inst->kind = kind;
+    svg_inst->coords = coords;
+    svg_inst->width = -1;
+    svg_inst->height = -1;
     return svg_inst;
 }
 
 SvgList* new_svg_list(SvgInst* svg) {
     SvgList* svg_list = malloc(sizeof(SvgList));
 
-    // COMPLETE HERE
+    svg_list->svg = svg;
+    svg_list->next = NULL;
 
     return svg_list;
 }
@@ -53,7 +57,8 @@ SvgList* new_svg_list(SvgInst* svg) {
 DOM* new_dom(DomElement dom_el, DomList* children) {
     DOM* dom = malloc(sizeof(DOM));
 
-    // COMPLETE HERE
+    dom->dom_el = dom_el;
+    dom->children = children;
 
     return dom;
 }
@@ -61,7 +66,8 @@ DOM* new_dom(DomElement dom_el, DomList* children) {
 DomList* new_dom_list(DOM* dom) {
     DomList* dom_list = malloc(sizeof(DomList));
 
-    // COMPLETE HERE
+    dom_list->dom = dom;
+    dom_list->next = NULL;
 
     return dom_list;
 }
