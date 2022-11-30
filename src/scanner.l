@@ -4,6 +4,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include <stdio.h>
+#include "ast.h"
+#include "y.tab.h"
 
 /* BEGIN MODE SYSTEM DECLARATION */
 int mode_caller[8];
@@ -27,10 +29,6 @@ void strbufapp(char c);
 char* strbufclr(void);
 char* str_copy(char *str);
 /* END STRING MANIPULATION DECLARATION */
-
-void print_token(char *token);
-void print_token_with_str(char *token, char *str);
-void print_token_with_number(char *token, int number);
 
 /*********** END OF C CODE ******************/
 
@@ -343,7 +341,6 @@ number [[:blank:]]*[0-9]+[[:blank:]]*
 };
 
 
-
 %%
 
 /*********** C CODE (YOU DO NOT HAVE TO MODIFY IT) ******************/
@@ -390,71 +387,4 @@ char* str_copy(char *str) {
     return copy;
 }
 
-void print_token(char *token) {
-    printf("TOKEN: %s\n", token);
-}
-
-void print_token_with_str(char *token, char *str) {
-    printf("TOKEN: %s | String: \"%s\"\n", token, str);
-}
-
-void print_token_with_number(char *token, int number) {
-    printf("TOKEN: %s | Number: \"%d\"\n", token, number);
-}
-
-int yywrap(void) {
-    return 1;
-}
-
-int main(int argc, char* argv[]) {
-#if YYDEBUG
-    extern int yydebug;
-    yydebug = 1;
-#endif
-    char* input = NULL;
-    char *original_input = NULL;
-    if (argc != 2) {
-        fprintf(stderr, "Please use program as: ./compo FILE.md");
-        return -1;
-    }
-
-    strbuf = malloc(sizeof(char) * STRBUFCAP);
-    FILE* f = fopen(argv[1], "r");
-    if (!f) {
-        fprintf(stderr, "Cannot open file");
-        return -1;
-    }
-    fseek(f, 0, SEEK_END);
-    int length = ftell(f);
-    rewind(f);
-    input = malloc(sizeof(char) * (length + 1));
-    original_input = input;
-    if (input == NULL) {
-        fprintf(stderr, "Cannot allocate enough memory for file");
-        return -2;
-    }
-    fread(input, sizeof(char), length, f);
-    fclose(f);
-    *(input + length) = 0;
-    unsigned int i = 0;
-    while (i < length && isspace(*input)) {
-        input++;
-        i++;
-    }
-    unsigned int j = length - i - 1;
-    while (j > i && isspace(*(input + j))) *(input + j--) = 0;
-    yy_scan_string(input);
-
-    int ret = yylex();
-
-    if (original_input != NULL) {
-        free(original_input);
-    }
-    yylex_destroy();
-    if (strbuf != NULL) {
-        free(strbuf);
-    }
-
-    return ret;
-}
 /*********** END OF C CODE ******************/

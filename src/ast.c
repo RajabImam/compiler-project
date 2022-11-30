@@ -5,23 +5,12 @@
 
 #define SAFE_FREE(ptr) if ((ptr) != NULL) free((ptr));
 
-/*
-YOU HAVE THE COMPLETE THE FUNCTIONS BELOW!
-
-To know the attributes of objects like SvgCoord, SvgCoordList, SvgInst, DOM, etc...
-please check the ast.h file!
-
-To access or set an attribute of a object defined as pointer (with the *):
-my_object->my_attribute
-
-my_object->my_attribute = something;
-*/
-
 
 SvgCoord* new_svg_coord(int x, int y) {
     SvgCoord* svg_coord = malloc(sizeof(SvgCoord));
-	svg_coord->x = x;
-	svg_coord->y = y;
+
+    svg_coord->x = x;
+    svg_coord->y = y;
 
     return svg_coord;
 }
@@ -31,17 +20,22 @@ SvgCoordList* new_svg_coord_list(SvgCoord* svg_coord) {
 
     svg_coord_list->coord = svg_coord;
     svg_coord_list->next = NULL;
-  
+
     return svg_coord_list;
 }
 
 SvgInst* new_svg_inst(SvgInstKind kind, SvgCoordList* coords) {
     SvgInst* svg_inst = malloc(sizeof(SvgInst));
-  
+
     svg_inst->kind = kind;
     svg_inst->coords = coords;
     svg_inst->width = -1;
     svg_inst->height = -1;
+    svg_inst->text = NULL;
+    svg_inst->anchor = NULL;
+    svg_inst->color_stroke = NULL;
+    svg_inst->color_fill = NULL;
+
     return svg_inst;
 }
 
@@ -59,6 +53,9 @@ DOM* new_dom(DomElement dom_el, DomList* children) {
 
     dom->dom_el = dom_el;
     dom->children = children;
+    dom->svg_children = NULL;
+    dom->text = NULL;
+    dom->url = NULL;
 
     return dom;
 }
