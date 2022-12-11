@@ -123,6 +123,17 @@ text:
         DOM* dom = new_dom(Strikethrough, $2);
         $$ = new_dom_list(dom);
     }
+    | INLINE_CODE TEXT INLINE_CODE {
+    	DOM* dom = new_dom(InlineCode, NULL);
+	dom->text = $2;
+	$$ = new_dom_list(dom);
+    }
+    | LBRACKET TEXT RBRACKET LPAREN TEXT RPAREN {
+    	DOM* dom = new_dom(Link, NULL);
+	dom->text = $2;
+	dom->url = $5;
+	$$ = new_dom_list(dom);
+    } 
     ;
 line:
     text line {
@@ -168,7 +179,54 @@ block:
     }
     | BLOCK_CODE BLANK_LINE paragraph BLANK_LINE BLOCK_CODE {
         $$ = new_dom(BlockCode, $3);
+    }
+    | QUOTE TEXT {
+    	$$ = new_dom(Quote, NULL);
+	$$->text = $2;
+    }
+    | EXCLAM LBRACKET TEXT RBRACKET LPAREN TEXT RPAREN {
+    	$$ = new_dom(Image, NULL);
+	$$->text = $3;
+	$$->url = $6;
     };
+    //| XSVG_BEGIN NUMBER COMMA NUMBER NUMBER COMMA NUMBER xvg_list XSVG_END {
+    //	$$ = new_svg_list(Svg, NULL);
+    //};
+
+//xsvg_list:
+//    xsvg BLANK_LINE xsvg_list {
+//        if ($1 == NULL) {
+//            $$ = $3;
+//        } else {
+//            $$ = new_svg_list($1);
+//
+//            $$->next = $3;
+//        }
+//    }
+//    | xsvg NEWLINE xsvg_list {
+//        if ($1 == NULL) {
+//            $$ = $3;
+//        } else {
+//            $$ = new_svg_list($1);
+//
+//            $$->next = $3;
+//        }
+//    }
+//    | xsvg {
+//        $$ = new_svg_list($1);
+//    };
+
+   
+    
+//xsvg:
+//    LINE NUMBER COMMA NUMBER NUMBER COMMA NUMBER  XSVG_TEXT {
+//    	SvgCoordList* svg_list = new_svg_coord_list($2, $4);
+//	svg_list->next = new_svg_coord_list($5, $7);
+//	$$ = new_svg_inst($8, svg_list);
+//    }
+
+
+
 block_list:
     block BLANK_LINE block_list {
         if ($1 == NULL) {
