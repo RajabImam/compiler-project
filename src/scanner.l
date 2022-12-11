@@ -30,12 +30,15 @@ char* strbufclr(void);
 char* str_copy(char *str);
 /* END STRING MANIPULATION DECLARATION */
 
+//void print_token(char *token);
+//void print_token_with_str(char *token, char *str);
+//void print_token_with_number(char *token, int number);
+
 /*********** END OF C CODE ******************/
 
 /*
 Here is my personal list of tokens for my grammar.
 You are welcome to use it if your grammar does not match what was expected:
-
 NEWLINE
 BLANK_LINE
 BOLD
@@ -77,8 +80,8 @@ NUMBER
 
 newline "\n"
 bold "**"
-underline "__"
 italic "*"
+underline "__"
 strikethrough "~~"
 h1 "#"[[:blank:]]*
 h2 "##"[[:blank:]]*
@@ -105,206 +108,206 @@ circle "circle"
 ellipse "ellipse"
 rect "rect"
 xsvg-text "text"
-str ""[[:blank:]]*[a-zA-Z\s]*[[:blank:]]*""
-text [[:blank:]]*[a-zA-Z]+[[:blank:]]*
-number [[:blank:]]*[0-9]+[[:blank:]]*
+str [[:blank:]]*[a-zA-Z]+[[:blank:]]*
+text [[:blank:]]*"\""[a-zA-Z\s]+"\""[[:blank:]]*
+number -?[0-9]+
 
-
-%x BOLD_MODE TEXT_MODE UNDERLINE_MODE ITALIC_MODE STRIKETHROUGH_MODE INLINE_CODE_MODE BRACKET_MODE PAREN_MODE XSVG_MODE
+%x BOLD_MODE TEXT_MODE ITALIC_MODE UNDERLINE_MODE STRIKETHROUGH_MODE INLINE_CODE_MODE BRACKET_MODE PAREN_MODE XSVG_MODE
 
 %%
 
 <INITIAL>[[:blank:]]*{newline} {
-    print_token("NEWLINE"); // It will print the token NEWLINE
+    return NEWLINE; // It will print the token NEWLINE
 };
 
 ([[:blank:]]*{newline}){2} {
-    print_token("BLANK_LINE");
+    return BLANK_LINE;
 };
-
-^{h1} {
-    print_token("H1");
-}
-
-^{h2} {
-    print_token("H2");	
-}
-
-^{h3} {
-    print_token("H3");
-}
-
-^{h4} {
-    print_token("H4");
-}
-^{h5} {
-    print_token("H5");
-}
-
-^{h6} {
-    print_token("H6");
-}
-
-^{quote} {
-    print_token("QUOTE");
-}
-
-^{hr} {
-    print_token("HR");
-}
-
-
 
 <INITIAL>{bold}	{
     BEGIN_MODE(BOLD_MODE); // You can switch to another mode
 
-    print_token("BOLD");
+    return BOLD;
 };
 
 <BOLD_MODE>{bold} {
     END_MODE; // It will go back to the previous mode
 
-    print_token("BOLD");
+    return BOLD;
 };
 
-<INITIAL>{underline}	{
-    BEGIN_MODE(UNDERLINE_MODE); // underline mode
+<INITIAL>{italic} {
+    BEGIN_MODE(ITALIC_MODE); // You can switch to another mode
 
-    print_token("UNDERLINE");
-};
-
-<UNDERLINE_MODE>{underline} {
-    END_MODE; // underline mode end to previous mode
-
-    print_token("UNDERLINE");
-};
-
-<INITIAL>{italic}	{
-    BEGIN_MODE(ITALIC_MODE); // italic mode
-
-    print_token("ITALIC");
+    return ITALIC;
 };
 
 <ITALIC_MODE>{italic} {
-    END_MODE; // end italic mode to previous mode
+    END_MODE; // It will go back to the previous mode
 
-    print_token("ITALIC");
+    return ITALIC;
 };
 
-<INITIAL>{strikethrough}	{
-    BEGIN_MODE(STRIKETHROUGH_MODE); // strikethrough mode
+<INITIAL>{underline} {
+    BEGIN_MODE(UNDERLINE_MODE); // You can switch to another mode
 
-    print_token("STRIKETHROUGH");
+    return UNDERLINE;
+};
+
+<UNDERLINE_MODE>{underline} {
+    END_MODE; // It will go back to the previous mode
+
+    return UNDERLINE;
+};
+
+<INITIAL>{strikethrough} {
+    BEGIN_MODE(STRIKETHROUGH_MODE); // You can switch to another mode
+
+    return STRIKETHROUGH;
 };
 
 <STRIKETHROUGH_MODE>{strikethrough} {
-    END_MODE; // end strikethrough mode to previous mode
+    END_MODE; // It will go back to the previous mode
 
-    print_token("STRIKETHROUGH");
+    return STRIKETHROUGH;
 };
 
-<INITIAL>{inline-code} {
-    BEGIN_MODE(INLINE_CODE_MODE); // inline code mode
+^{h1} {
+    return H1;
+}
 
-    print_token("INLINE_CODE");
+^{h2} {
+    return H2;
+}
+
+^{h3} {
+    return H3;
+}
+
+^{h4} {
+    return H4;
+}
+
+^{h5} {
+    return H5;
+}
+
+^{h6} {
+    return H6;
+}
+
+^{quote} {
+    return QUOTE;
+}
+
+^{hr} {
+    return HR;
+}
+
+<INITIAL>{inline-code} {
+    BEGIN_MODE(INLINE_CODE_MODE); // You can switch to another mode
+
+    return INLINE_CODE;
 };
 
 <INLINE_CODE_MODE>{inline-code} {
-    END_MODE; // end inline code mode to previous mode
+    END_MODE; // It will go back to the previous mode
 
-    print_token("INLINE_CODE");
+    return INLINE_CODE;
 };
 
 ^{block-code} {
-    print_token("BLOCK-CODE");
+    return BLOCK_CODE;
 }
 
-{exclam} {
-    print_token("EXCLAM");
+^{exclam} {
+    return EXCLAM;
 }
 
 <INITIAL>{lparen} {
-    BEGIN_MODE(PAREN_MODE); // paren mode
+    BEGIN_MODE(PAREN_MODE); // You can switch to another mode
 
-    print_token("LPAREN");
+    return LPAREN;
 };
 
 <PAREN_MODE>{rparen} {
-    END_MODE; // end paren mode to previous mode
+    END_MODE; // It will go back to the previous mode
 
-    print_token("RPAREN");
+    return RPAREN;
 };
 
 <INITIAL>{lbracket} {
-    BEGIN_MODE(BRACKET_MODE); // bracket mode
+    BEGIN_MODE(BRACKET_MODE); // You can switch to another mode
 
-    print_token("LBRACKET");
+    return LBRACKET;
 };
 
 <BRACKET_MODE>{rbracket} {
-    END_MODE; // end bracket mode to previous mode
+    END_MODE; // It will go back to the previous mode
 
-    print_token("RBRACKET");
+    return RBRACKET;
 };
 
-<INITIAL>{xsvg-begin} {
-    BEGIN_MODE(XSVG_MODE); // svg mode
+^{xsvg-begin} {
+    BEGIN_MODE(XSVG_MODE); // You can switch to another mode
 
-    print_token("XSVG_BEGIN");
-};
-
-<XSVG_MODE>{comma} {
-    print_token("COMMA");
-};
-
-<XSVG_MODE>{line} {
-    print_token("LINE");
-};
-
-<XSVG_MODE>{polyline} {
-    print_token("POLYLINE");
-};
-
-<XSVG_MODE>{polygon} {
-    print_token("POLYGON");
-};
-
-<XSVG_MODE>{circle} {
-    print_token("CIRCLE");
-};
-
-<XSVG_MODE>{ellipse} {
-    print_token("ELLIPSE");
-};
-
-<XSVG_MODE>{rect} {
-    print_token("RECT");
-};
-
-<XSVG_MODE>{xsvg-text} {
-    print_token("XSVG_TEXT");
-};
-
-<XSVG_MODE>{number} {
-    print_token_with_str("NUMBER", yytext);
-};
-
-<XSVG_MODE>{str} {
-    print_token_with_str("STR", yytext);
-};
-
-<XSVG_MODE>{text} {
-    print_token_with_str("TEXT", yytext);
+    return XSVG_BEGIN;
 };
 
 <XSVG_MODE>{xsvg-end} {
-    END_MODE; // end svg mode to previous mode
-
-    print_token("XSVG_END");
+    END_MODE; 
+    return XSVG_END;
 };
 
+<XSVG_MODE>{comma} {
+    return COMMA;
+};
 
-<INITIAL,BOLD_MODE,UNDERLINE_MODE,ITALIC_MODE,STRIKETHROUGH_MODE,INLINE_CODE_MODE,BRACKET_MODE,PAREN_MODE>. {
+<XSVG_MODE>{line} {
+    return LINE;
+};
+
+<XSVG_MODE>{polyline} {
+    return POLYLINE;
+};
+
+<XSVG_MODE>{polygon} {
+    return POLYGON;
+};
+
+<XSVG_MODE>{circle} {
+    return CIRCLE;
+};
+
+<XSVG_MODE>{ellipse} {
+    return ELLIPSE;
+};
+
+<XSVG_MODE>{rect} {
+    return RECT;
+};
+
+<XSVG_MODE>{xsvg-text} {
+    return XSVG_TEXT;
+};
+
+<XSVG_MODE>{number} {
+    return NUMBER;
+};
+
+<XSVG_MODE>\n {
+    return NEWLINE;
+};
+
+<XSVG_MODE>"\"".+"\"" {
+    return STR;
+};
+
+<XSVG_MODE>[a-zA-Z\s]+ {
+    return STR;
+};
+
+<INITIAL,BOLD_MODE,ITALIC_MODE,UNDERLINE_MODE,STRIKETHROUGH_MODE,INLINE_CODE_MODE,BRACKET_MODE,PAREN_MODE>. {
     BEGIN_MODE(TEXT_MODE);
 
     // yytext is containing the text captured by the regular
@@ -314,7 +317,7 @@ number [[:blank:]]*[0-9]+[[:blank:]]*
     strbufapp(*yytext);
 };
 
-<TEXT_MODE>({newline}|{bold}|{underline}|{italic}|{strikethrough}|^{h1}|^{h2}|^{h3}|^{h4}|^{h5}|^{h6}|^{quote}|{inline-code}|^{block-code}|{lbracket}|{rbracket}|{lparen}|{rparen})(.|\n)* {
+<TEXT_MODE>({newline}|{bold}|{italic}|{underline}|{strikethrough}|^{h1}|^{h2}|^{h3}|^{h4}|^{h5}|^{h6}|^{quote}|{inline-code}|^{block-code}|{lbracket}|{rbracket}|{lparen}|{rparen})(.|\n)* {
     END_MODE;
 
     // We give the full capture to Flex to be analyzed again
@@ -323,9 +326,8 @@ number [[:blank:]]*[0-9]+[[:blank:]]*
 
     char* txt = strbufclr(); // We retrieve the global string made with strbufapp()
     char *copy = str_copy(txt); // We have to make a copy of the global string or the yytext when needed
-    print_token_with_str("TEXT", copy); // Will print the token TEXT along with the string
+    return TEXT; // Will print the token TEXT along with the string
 };
-
 
 <TEXT_MODE><<EOF>> {
     // <<EOF>> means the end of the markdown file.
@@ -333,17 +335,24 @@ number [[:blank:]]*[0-9]+[[:blank:]]*
 
     char* txt = strbufclr();
     char *copy = str_copy(txt);
-    print_token_with_str("TEXT", copy);
+    return TEXT;
 };
 
 <TEXT_MODE>. {
     strbufapp(*yytext);
 };
 
+<XSVG_MODE>. {}
 
 %%
 
 /*********** C CODE (YOU DO NOT HAVE TO MODIFY IT) ******************/
+
+//Implementaion of stack methods to manage the states 
+//In declaration sections, the stack is defined as an string(char*) array of size 9 to store the states 
+//The mode_caller_length serves at the top of stack pointer. It is initialized to 0 in the declarations section
+//Hence this scanner can operate in a maximum of 9 states
+
 void mode_caller_push(int mode) {
     mode_caller[mode_caller_len++] = mode;
 }
@@ -359,6 +368,7 @@ int mode_caller_pop(void) {
     }
     return caller;
 }
+/**********************************************************************/
 
 void strbufapp(char c) {
     if (strbuf == NULL) {
@@ -386,5 +396,4 @@ char* str_copy(char *str) {
 
     return copy;
 }
-
 /*********** END OF C CODE ******************/
