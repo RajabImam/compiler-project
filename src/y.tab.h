@@ -106,8 +106,9 @@ union YYSTYPE
     SvgCoordList* svg_coord_list;
     SvgInst* svg;
     SvgList* svg_list;
+    SvgInstKind svg_inst_kind;
 
-#line 111 "src/y.tab.h"
+#line 112 "src/y.tab.h"
 
 };
 typedef union YYSTYPE YYSTYPE;

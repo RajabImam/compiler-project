@@ -67,6 +67,7 @@ DOM* dom_root = NULL;
     SvgCoordList* svg_coord_list;
     SvgInst* svg;
     SvgList* svg_list;
+    SvgInstKind svg_inst_kind;
 }
 
 %destructor { free($$); } <text>
@@ -97,6 +98,10 @@ DOM* dom_root = NULL;
 
 %type <dom> document block
 %type <dom_list> block_list paragraph line text
+%type <svg_list> svg_list
+%type <svg_coord> svg_coord
+%type <svg> svg
+%type <svg_inst_kind> LINE
 %start document
 
 %%
@@ -188,44 +193,37 @@ block:
     	$$ = new_dom(Image, NULL);
 	$$->text = $3;
 	$$->url = $6;
+    }
+    | XSVG_BEGIN svg_coord COMMA svg_coord svg_list XSVG_END {
+    	$$ = new_dom(SVG, NULL);
+	$$->svg_children = $5;
     };
-    //| XSVG_BEGIN NUMBER COMMA NUMBER NUMBER COMMA NUMBER xvg_list XSVG_END {
-    //	$$ = new_svg_list(Svg, NULL);
-    //};
 
-//xsvg_list:
-//    xsvg BLANK_LINE xsvg_list {
-//        if ($1 == NULL) {
-//            $$ = $3;
-//        } else {
-//            $$ = new_svg_list($1);
-//
-//            $$->next = $3;
-//        }
-//    }
-//    | xsvg NEWLINE xsvg_list {
-//        if ($1 == NULL) {
-//            $$ = $3;
-//        } else {
-//            $$ = new_svg_list($1);
-//
-//            $$->next = $3;
-//        }
-//    }
-//    | xsvg {
-//        $$ = new_svg_list($1);
-//    };
+svg_list:
+   svg svg_list {
+        if ($1 == NULL) {
+            $$ = $2;
+        } else {
+            $$ = new_svg_list($1);
+            $$->next = $2;
+        }
+    }
+    | svg {
+        $$ = new_svg_list($1);
+    };
 
-   
+svg_coord:
+    NUMBER COMMA NUMBER {
+    	$$ = new_svg_coord($1, $3);
+    };
     
-//xsvg:
-//    LINE NUMBER COMMA NUMBER NUMBER COMMA NUMBER  XSVG_TEXT {
-//    	SvgCoordList* svg_list = new_svg_coord_list($2, $4);
-//	svg_list->next = new_svg_coord_list($5, $7);
-//	$$ = new_svg_inst($8, svg_list);
-//    }
-
-
+svg:
+    LINE svg_coord svg_coord STR {
+    	SvgCoordList* svg_coord_list = new_svg_coord_list($2);
+	svg_coord_list->next = new_svg_coord_list($3);
+        $$ = new_svg_inst($1, svg_coord_list);
+	$$->color_stroke = $4;	
+   };
 
 block_list:
     block BLANK_LINE block_list {
