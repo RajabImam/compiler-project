@@ -103,7 +103,9 @@ DOM* dom_root = NULL;
 %type <svg_coord_list> svg_coord_list
 %type <svg> svg
 %type <svg_inst_kind> LINE POLYLINE POLYGON CIRCLE ELLIPSE RECT XSVG_TEXT
+%type <text> STR
 %start document
+
 
 %%
 
@@ -223,24 +225,37 @@ svg:
     	SvgCoordList* svg_coord_list = new_svg_coord_list($2);
 	svg_coord_list->next = new_svg_coord_list($3);
         $$ = new_svg_inst(Line, svg_coord_list);
+	$$->color_stroke = $4;
    }
    | POLYLINE svg_coord_list STR {
 	$$ = new_svg_inst(Polyline,$2);
+	$$->color_stroke = $3;
    }
    | POLYGON svg_coord_list STR STR {
 	$$ = new_svg_inst(Polygon, $2);
+	$$->color_fill = $3;
+	$$->color_stroke = $4;
    }
    | CIRCLE svg_coord NUMBER STR STR {
 	$$ = new_svg_inst(Circle, new_svg_coord_list($2));
+	$$->color_fill = $4;
+	$$->color_stroke = $5;
    }
    | ELLIPSE svg_coord NUMBER NUMBER STR STR {
 	$$ = new_svg_inst(Ellipse, new_svg_coord_list($2));
+	$$->color_fill = $5;
+	$$->color_stroke = $6;
    }
    | RECT svg_coord NUMBER NUMBER STR STR {
 	$$ = new_svg_inst(Rect, new_svg_coord_list($2));
+	$$->color_fill = $5;
+	$$->color_stroke = $6;
    }
-   | XSVG_TEXT svg_coord STR STR STR STR { 
+   | XSVG_TEXT svg_coord STR STR STR { 
 	$$ = new_svg_inst(Text, new_svg_coord_list($2));
+	$$->color_fill = $5;
+	$$->anchor = $4;
+	$$->text = $3;
    };
 
 svg_coord_list:

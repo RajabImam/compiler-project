@@ -4,4 +4,4 @@
 ```xsvg:0,0,20,10 circle 0,0 5 red blue ```
 ```xsvg:0,0,20,10 ellipse 0,0 5 10 red blue ```
 ```xsvg:0,0,20,10 rect 0,0 5 5 red yellow ```
-```xsvg:0,0,20,10 text 0,0 "bonjour" red blue yellow ```
+```xsvg:0,0,20,10 text 0,0 "bonjour" middle blue ```
