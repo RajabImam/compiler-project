@@ -100,8 +100,9 @@ DOM* dom_root = NULL;
 %type <dom_list> block_list paragraph line text
 %type <svg_list> svg_list
 %type <svg_coord> svg_coord
+%type <svg_coord_list> svg_coord_list
 %type <svg> svg
-%type <svg_inst_kind> LINE
+%type <svg_inst_kind> LINE POLYLINE POLYGON CIRCLE ELLIPSE RECT XSVG_TEXT
 %start document
 
 %%
@@ -221,9 +222,38 @@ svg:
     LINE svg_coord svg_coord STR {
     	SvgCoordList* svg_coord_list = new_svg_coord_list($2);
 	svg_coord_list->next = new_svg_coord_list($3);
-        $$ = new_svg_inst($1, svg_coord_list);
-	$$->color_stroke = $4;	
+        $$ = new_svg_inst(Line, svg_coord_list);
+   }
+   | POLYLINE svg_coord_list STR {
+	$$ = new_svg_inst(Polyline,$2);
+   }
+   | POLYGON svg_coord_list STR STR {
+	$$ = new_svg_inst(Polygon, $2);
+   }
+   | CIRCLE svg_coord NUMBER STR STR {
+	$$ = new_svg_inst(Circle, new_svg_coord_list($2));
+   }
+   | ELLIPSE svg_coord NUMBER NUMBER STR STR {
+	$$ = new_svg_inst(Ellipse, new_svg_coord_list($2));
+   }
+   | RECT svg_coord NUMBER NUMBER STR STR {
+	$$ = new_svg_inst(Rect, new_svg_coord_list($2));
+   }
+   | XSVG_TEXT svg_coord STR STR STR STR { 
+	$$ = new_svg_inst(Text, new_svg_coord_list($2));
    };
+
+svg_coord_list:
+    svg_coord svg_coord_list {
+	if ($1 == NULL) {
+	    $$ = $2;
+	} else {
+	    $$ = new_svg_coord_list($1);
+	    $$->next = $2;
+	}
+    } | svg_coord {
+	$$ = new_svg_coord_list($1);
+    }
 
 block_list:
     block BLANK_LINE block_list {
@@ -252,7 +282,6 @@ document: block_list {
     dom_root = $$ = new_dom(Document, $1);
     YYACCEPT;
 };
-
 %%
 
 /*********** C CODE (YOU DO NOT HAVE TO MODIFY IT) ******************/
