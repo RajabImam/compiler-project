@@ -260,15 +260,21 @@ svg:
 
 svg_coord_list:
     svg_coord svg_coord_list {
-	if ($1 == NULL) {
-	    $$ = $2;
-	} else {
-	    $$ = new_svg_coord_list($1);
-	    $$->next = $2;
-	}
-    } | svg_coord {
-	$$ = new_svg_coord_list($1);
+        $$ = new_svg_coord_list($1);
+        $$->next = $2;
     }
+    |
+    svg_coord{
+        $$ = new_svg_coord_list($1);
+	// if ($1 == NULL) {
+	//     $$ = $2;
+	// } else {
+	//     $$ = new_svg_coord_list($1);
+	//     $$->next = $2;
+	// }
+    // } | svg_coord {
+	// $$ = new_svg_coord_list($1);
+    };
 
 block_list:
     block BLANK_LINE block_list {
