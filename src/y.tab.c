@@ -1,4 +1,4 @@
-/* A Bison parser, made by GNU Bison 3.8.2.  */
+/* A Bison parser, made by GNU Bison 3.7.5.  */
 
 /* Bison implementation for Yacc-like parsers in C
 
@@ -16,7 +16,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
+   along with this program.  If not, see <http://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -46,10 +46,10 @@
    USER NAME SPACE" below.  */
 
 /* Identify Bison output, and Bison version.  */
-#define YYBISON 30802
+#define YYBISON 30705
 
 /* Bison version string.  */
-#define YYBISON_VERSION "3.8.2"
+#define YYBISON_VERSION "3.7.5"
 
 /* Skeleton name.  */
 #define YYSKELETON_NAME "yacc.c"
@@ -360,18 +360,12 @@ typedef int yy_state_fast_t;
 # define YY_USE(E) /* empty */
 #endif
 
+#if defined __GNUC__ && ! defined __ICC && 407 <= __GNUC__ * 100 + __GNUC_MINOR__
 /* Suppress an incorrect diagnostic about yylval being uninitialized.  */
-#if defined __GNUC__ && ! defined __ICC && 406 <= __GNUC__ * 100 + __GNUC_MINOR__
-# if __GNUC__ * 100 + __GNUC_MINOR__ < 407
-#  define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN                           \
-    _Pragma ("GCC diagnostic push")                                     \
-    _Pragma ("GCC diagnostic ignored \"-Wuninitialized\"")
-# else
-#  define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN                           \
+# define YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN                            \
     _Pragma ("GCC diagnostic push")                                     \
     _Pragma ("GCC diagnostic ignored \"-Wuninitialized\"")              \
     _Pragma ("GCC diagnostic ignored \"-Wmaybe-uninitialized\"")
-# endif
 # define YY_IGNORE_MAYBE_UNINITIALIZED_END      \
     _Pragma ("GCC diagnostic pop")
 #else
@@ -566,7 +560,7 @@ static const yytype_int8 yytranslate[] =
 };
 
 #if YYDEBUG
-/* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
+  /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
        0,   116,   116,   121,   125,   129,   133,   137,   142,   150,
@@ -602,6 +596,18 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
+#ifdef YYPRINT
+/* YYTOKNUM[NUM] -- (External) token number corresponding to the
+   (internal) symbol number NUM (which must be that of a token).  */
+static const yytype_int16 yytoknum[] =
+{
+       0,   256,   257,   258,   259,   260,   261,   262,   263,   264,
+     265,   266,   267,   268,   269,   270,   271,   272,   273,   274,
+     275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
+     285,   286,   287,   288,   289,   290,   291
+};
+#endif
+
 #define YYPACT_NINF (-54)
 
 #define yypact_value_is_default(Yyn) \
@@ -612,8 +618,8 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 #define yytable_value_is_error(Yyn) \
   0
 
-/* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
-   STATE-NUM.  */
+  /* YYPACT[STATE-NUM] -- Index in YYTABLE of the portion describing
+     STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
       -4,    16,    16,    16,    16,   -20,    -9,    -5,    14,    15,
@@ -629,9 +635,9 @@ static const yytype_int8 yypact[] =
       80,    81,    82,   -54,    83,    84,   -54,   -54,   -54
 };
 
-/* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
-   Performed when YYTABLE does not specify something else to do.  Zero
-   means the default is an error.  */
+  /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
+     Performed when YYTABLE does not specify something else to do.  Zero
+     means the default is an error.  */
 static const yytype_int8 yydefact[] =
 {
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
@@ -647,23 +653,23 @@ static const yytype_int8 yydefact[] =
        0,     0,     0,    30,     0,     0,    33,    31,    32
 };
 
-/* YYPGOTO[NTERM-NUM].  */
+  /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
      -54,    30,    69,   -25,   -54,     9,   -16,   -54,   -53,    -7,
      -54
 };
 
-/* YYDEFGOTO[NTERM-NUM].  */
+  /* YYDEFGOTO[NTERM-NUM].  */
 static const yytype_int8 yydefgoto[] =
 {
        0,    18,    19,    20,    21,    74,    79,    75,    80,    22,
       23
 };
 
-/* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
-   positive, shift that token.  If negative, reduce the rule whose
-   number is the opposite.  If YYTABLE_NINF, syntax error.  */
+  /* YYTABLE[YYPACT[STATE-NUM]] -- What to do in state STATE-NUM.  If
+     positive, shift that token.  If negative, reduce the rule whose
+     number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int8 yytable[] =
 {
       40,     1,     2,     3,     4,     5,     6,     7,     8,     9,
@@ -696,8 +702,8 @@ static const yytype_int8 yycheck[] =
       -1,    36,    36,    35,    35,    35,    35,    35,    35,    35
 };
 
-/* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
-   state STATE-NUM.  */
+  /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
+     symbol of state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
        0,     5,     6,     7,     8,     9,    10,    11,    12,    13,
@@ -713,7 +719,7 @@ static const yytype_int8 yystos[] =
       36,    36,    35,    35,    35,    35,    35,    35,    35
 };
 
-/* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
+  /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
        0,    37,    38,    38,    38,    38,    38,    38,    38,    39,
@@ -722,7 +728,7 @@ static const yytype_int8 yyr1[] =
       44,    44,    44,    44,    45,    45,    46,    46,    46,    47
 };
 
-/* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
+  /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
 static const yytype_int8 yyr2[] =
 {
        0,     2,     1,     3,     3,     3,     3,     3,     6,     2,
@@ -740,7 +746,6 @@ enum { YYENOMEM = -2 };
 #define YYACCEPT        goto yyacceptlab
 #define YYABORT         goto yyabortlab
 #define YYERROR         goto yyerrorlab
-#define YYNOMEM         goto yyexhaustedlab
 
 
 #define YYRECOVERING()  (!!yyerrstatus)
@@ -782,7 +787,10 @@ do {                                            \
     YYFPRINTF Args;                             \
 } while (0)
 
-
+/* This macro is provided for backward compatibility. */
+# ifndef YY_LOCATION_PRINT
+#  define YY_LOCATION_PRINT(File, Loc) ((void) 0)
+# endif
 
 
 # define YY_SYMBOL_PRINT(Title, Kind, Value, Location)                    \
@@ -809,6 +817,10 @@ yy_symbol_value_print (FILE *yyo,
   YY_USE (yyoutput);
   if (!yyvaluep)
     return;
+# ifdef YYPRINT
+  if (yykind < YYNTOKENS)
+    YYPRINT (yyo, yytoknum[yykind], *yyvaluep);
+# endif
   YY_IGNORE_MAYBE_UNINITIALIZED_BEGIN
   YY_USE (yykind);
   YY_IGNORE_MAYBE_UNINITIALIZED_END
@@ -1010,7 +1022,7 @@ do {                                                                    \
       switch (yy_lac (yyesa, &yyes, &yyes_capacity, yyssp, yytoken))    \
         {                                                               \
         case YYENOMEM:                                                  \
-          YYNOMEM;                                                      \
+          goto yyexhaustedlab;                                          \
         case 1:                                                         \
           goto yyerrlab;                                                \
         }                                                               \
@@ -1399,73 +1411,73 @@ yydestruct (const char *yymsg,
     case YYSYMBOL_TEXT: /* TEXT  */
 #line 76 "src/parser.y"
             { free(((*yyvaluep).text)); }
-#line 1403 "src/y.tab.c"
+#line 1415 "src/y.tab.c"
         break;
 
     case YYSYMBOL_STR: /* STR  */
 #line 76 "src/parser.y"
             { free(((*yyvaluep).text)); }
-#line 1409 "src/y.tab.c"
+#line 1421 "src/y.tab.c"
         break;
 
     case YYSYMBOL_text: /* text  */
 #line 78 "src/parser.y"
             { free_dom_list(((*yyvaluep).dom_list)); }
-#line 1415 "src/y.tab.c"
+#line 1427 "src/y.tab.c"
         break;
 
     case YYSYMBOL_line: /* line  */
 #line 78 "src/parser.y"
             { free_dom_list(((*yyvaluep).dom_list)); }
-#line 1421 "src/y.tab.c"
+#line 1433 "src/y.tab.c"
         break;
 
     case YYSYMBOL_paragraph: /* paragraph  */
 #line 78 "src/parser.y"
             { free_dom_list(((*yyvaluep).dom_list)); }
-#line 1427 "src/y.tab.c"
+#line 1439 "src/y.tab.c"
         break;
 
     case YYSYMBOL_block: /* block  */
 #line 77 "src/parser.y"
             { free_dom(((*yyvaluep).dom)); }
-#line 1433 "src/y.tab.c"
+#line 1445 "src/y.tab.c"
         break;
 
     case YYSYMBOL_svg_list: /* svg_list  */
 #line 82 "src/parser.y"
             { free_svg_list(((*yyvaluep).svg_list)); }
-#line 1439 "src/y.tab.c"
+#line 1451 "src/y.tab.c"
         break;
 
     case YYSYMBOL_svg_coord: /* svg_coord  */
 #line 79 "src/parser.y"
             { free(((*yyvaluep).svg_coord)); }
-#line 1445 "src/y.tab.c"
+#line 1457 "src/y.tab.c"
         break;
 
     case YYSYMBOL_svg: /* svg  */
 #line 81 "src/parser.y"
             { free_svg_inst(((*yyvaluep).svg)); }
-#line 1451 "src/y.tab.c"
+#line 1463 "src/y.tab.c"
         break;
 
     case YYSYMBOL_svg_coord_list: /* svg_coord_list  */
 #line 80 "src/parser.y"
             { free_svg_coord_list(((*yyvaluep).svg_coord_list)); }
-#line 1457 "src/y.tab.c"
+#line 1469 "src/y.tab.c"
         break;
 
     case YYSYMBOL_block_list: /* block_list  */
 #line 78 "src/parser.y"
             { free_dom_list(((*yyvaluep).dom_list)); }
-#line 1463 "src/y.tab.c"
+#line 1475 "src/y.tab.c"
         break;
 
     case YYSYMBOL_document: /* document  */
 #line 77 "src/parser.y"
             { free_dom(((*yyvaluep).dom)); }
-#line 1469 "src/y.tab.c"
+#line 1481 "src/y.tab.c"
         break;
 
       default:
@@ -1542,7 +1554,6 @@ yyparse (void)
   YYDPRINTF ((stderr, "Starting parse\n"));
 
   yychar = YYEMPTY; /* Cause a token to be read.  */
-
   goto yysetstate;
 
 
@@ -1568,7 +1579,7 @@ yysetstate:
 
   if (yyss + yystacksize - 1 <= yyssp)
 #if !defined yyoverflow && !defined YYSTACK_RELOCATE
-    YYNOMEM;
+    goto yyexhaustedlab;
 #else
     {
       /* Get the current used size of the three stacks, in elements.  */
@@ -1596,7 +1607,7 @@ yysetstate:
 # else /* defined YYSTACK_RELOCATE */
       /* Extend the stack our own way.  */
       if (YYMAXDEPTH <= yystacksize)
-        YYNOMEM;
+        goto yyexhaustedlab;
       yystacksize *= 2;
       if (YYMAXDEPTH < yystacksize)
         yystacksize = YYMAXDEPTH;
@@ -1607,7 +1618,7 @@ yysetstate:
           YY_CAST (union yyalloc *,
                    YYSTACK_ALLOC (YY_CAST (YYSIZE_T, YYSTACK_BYTES (yystacksize))));
         if (! yyptr)
-          YYNOMEM;
+          goto yyexhaustedlab;
         YYSTACK_RELOCATE (yyss_alloc, yyss);
         YYSTACK_RELOCATE (yyvs_alloc, yyvs);
 #  undef YYSTACK_RELOCATE
@@ -1628,7 +1639,6 @@ yysetstate:
         YYABORT;
     }
 #endif /* !defined yyoverflow && !defined YYSTACK_RELOCATE */
-
 
   if (yystate == YYFINAL)
     YYACCEPT;
@@ -1692,8 +1702,8 @@ yybackup:
     {
       if (yytable_value_is_error (yyn))
         goto yyerrlab;
-      yyn = -yyn;
       YY_LAC_ESTABLISH;
+      yyn = -yyn;
       goto yyreduce;
     }
 
@@ -1755,7 +1765,7 @@ yyreduce:
         dom->text = (yyvsp[0].text);
         (yyval.dom_list) = new_dom_list(dom);
     }
-#line 1759 "src/y.tab.c"
+#line 1769 "src/y.tab.c"
     break;
 
   case 3: /* text: BOLD text BOLD  */
@@ -1764,7 +1774,7 @@ yyreduce:
         DOM* dom = new_dom(Bold, (yyvsp[-1].dom_list));
         (yyval.dom_list) = new_dom_list(dom);
     }
-#line 1768 "src/y.tab.c"
+#line 1778 "src/y.tab.c"
     break;
 
   case 4: /* text: ITALIC text ITALIC  */
@@ -1773,7 +1783,7 @@ yyreduce:
         DOM* dom = new_dom(Italic, (yyvsp[-1].dom_list));
         (yyval.dom_list) = new_dom_list(dom);
     }
-#line 1777 "src/y.tab.c"
+#line 1787 "src/y.tab.c"
     break;
 
   case 5: /* text: UNDERLINE text UNDERLINE  */
@@ -1782,7 +1792,7 @@ yyreduce:
         DOM* dom = new_dom(Underline, (yyvsp[-1].dom_list));
         (yyval.dom_list) = new_dom_list(dom);
     }
-#line 1786 "src/y.tab.c"
+#line 1796 "src/y.tab.c"
     break;
 
   case 6: /* text: STRIKETHROUGH text STRIKETHROUGH  */
@@ -1791,7 +1801,7 @@ yyreduce:
         DOM* dom = new_dom(Strikethrough, (yyvsp[-1].dom_list));
         (yyval.dom_list) = new_dom_list(dom);
     }
-#line 1795 "src/y.tab.c"
+#line 1805 "src/y.tab.c"
     break;
 
   case 7: /* text: INLINE_CODE TEXT INLINE_CODE  */
@@ -1801,7 +1811,7 @@ yyreduce:
 	dom->text = (yyvsp[-1].text);
 	(yyval.dom_list) = new_dom_list(dom);
     }
-#line 1805 "src/y.tab.c"
+#line 1815 "src/y.tab.c"
     break;
 
   case 8: /* text: LBRACKET TEXT RBRACKET LPAREN TEXT RPAREN  */
@@ -1812,7 +1822,7 @@ yyreduce:
 	dom->url = (yyvsp[-1].text);
 	(yyval.dom_list) = new_dom_list(dom);
     }
-#line 1816 "src/y.tab.c"
+#line 1826 "src/y.tab.c"
     break;
 
   case 9: /* line: text line  */
@@ -1821,13 +1831,13 @@ yyreduce:
         (yyval.dom_list) = (yyvsp[-1].dom_list);
         (yyval.dom_list)->next = (yyvsp[0].dom_list);
     }
-#line 1825 "src/y.tab.c"
+#line 1835 "src/y.tab.c"
     break;
 
   case 10: /* line: text  */
 #line 154 "src/parser.y"
            { (yyval.dom_list) = (yyvsp[0].dom_list); }
-#line 1831 "src/y.tab.c"
+#line 1841 "src/y.tab.c"
     break;
 
   case 11: /* paragraph: line NEWLINE paragraph  */
@@ -1838,13 +1848,13 @@ yyreduce:
         while (curr->next != NULL) curr = curr->next;
         curr->next = (yyvsp[0].dom_list);
     }
-#line 1842 "src/y.tab.c"
+#line 1852 "src/y.tab.c"
     break;
 
   case 12: /* paragraph: line  */
 #line 162 "src/parser.y"
            { (yyval.dom_list) = (yyvsp[0].dom_list); }
-#line 1848 "src/y.tab.c"
+#line 1858 "src/y.tab.c"
     break;
 
   case 13: /* block: H1 TEXT  */
@@ -1853,7 +1863,7 @@ yyreduce:
         (yyval.dom) = new_dom(Header1, NULL);
         (yyval.dom)->text = (yyvsp[0].text);
     }
-#line 1857 "src/y.tab.c"
+#line 1867 "src/y.tab.c"
     break;
 
   case 14: /* block: H2 TEXT  */
@@ -1862,7 +1872,7 @@ yyreduce:
         (yyval.dom) = new_dom(Header2, NULL);
         (yyval.dom)->text = (yyvsp[0].text);
     }
-#line 1866 "src/y.tab.c"
+#line 1876 "src/y.tab.c"
     break;
 
   case 15: /* block: H3 TEXT  */
@@ -1871,7 +1881,7 @@ yyreduce:
         (yyval.dom) = new_dom(Header3, NULL);
         (yyval.dom)->text = (yyvsp[0].text);
     }
-#line 1875 "src/y.tab.c"
+#line 1885 "src/y.tab.c"
     break;
 
   case 16: /* block: H4 TEXT  */
@@ -1880,7 +1890,7 @@ yyreduce:
         (yyval.dom) = new_dom(Header4, NULL);
         (yyval.dom)->text = (yyvsp[0].text);
     }
-#line 1884 "src/y.tab.c"
+#line 1894 "src/y.tab.c"
     break;
 
   case 17: /* block: H5 TEXT  */
@@ -1889,7 +1899,7 @@ yyreduce:
         (yyval.dom) = new_dom(Header5, NULL);
         (yyval.dom)->text = (yyvsp[0].text);
     }
-#line 1893 "src/y.tab.c"
+#line 1903 "src/y.tab.c"
     break;
 
   case 18: /* block: H6 TEXT  */
@@ -1898,7 +1908,7 @@ yyreduce:
         (yyval.dom) = new_dom(Header6, NULL);
         (yyval.dom)->text = (yyvsp[0].text);
     }
-#line 1902 "src/y.tab.c"
+#line 1912 "src/y.tab.c"
     break;
 
   case 19: /* block: paragraph  */
@@ -1906,7 +1916,7 @@ yyreduce:
                 {
         (yyval.dom) = new_dom(Paragraph, (yyvsp[0].dom_list));
     }
-#line 1910 "src/y.tab.c"
+#line 1920 "src/y.tab.c"
     break;
 
   case 20: /* block: BLOCK_CODE BLANK_LINE paragraph BLANK_LINE BLOCK_CODE  */
@@ -1914,7 +1924,7 @@ yyreduce:
                                                             {
         (yyval.dom) = new_dom(BlockCode, (yyvsp[-2].dom_list));
     }
-#line 1918 "src/y.tab.c"
+#line 1928 "src/y.tab.c"
     break;
 
   case 21: /* block: QUOTE TEXT  */
@@ -1923,7 +1933,7 @@ yyreduce:
     	(yyval.dom) = new_dom(Quote, NULL);
 	(yyval.dom)->text = (yyvsp[0].text);
     }
-#line 1927 "src/y.tab.c"
+#line 1937 "src/y.tab.c"
     break;
 
   case 22: /* block: EXCLAM LBRACKET TEXT RBRACKET LPAREN TEXT RPAREN  */
@@ -1933,7 +1943,7 @@ yyreduce:
 	(yyval.dom)->text = (yyvsp[-4].text);
 	(yyval.dom)->url = (yyvsp[-1].text);
     }
-#line 1937 "src/y.tab.c"
+#line 1947 "src/y.tab.c"
     break;
 
   case 23: /* block: XSVG_BEGIN svg_coord COMMA svg_coord svg_list XSVG_END  */
@@ -1942,7 +1952,7 @@ yyreduce:
     	(yyval.dom) = new_dom(SVG, NULL);
 	(yyval.dom)->svg_children = (yyvsp[-1].svg_list);
     }
-#line 1946 "src/y.tab.c"
+#line 1956 "src/y.tab.c"
     break;
 
   case 24: /* svg_list: svg svg_list  */
@@ -1955,7 +1965,7 @@ yyreduce:
             (yyval.svg_list)->next = (yyvsp[0].svg_list);
         }
     }
-#line 1959 "src/y.tab.c"
+#line 1969 "src/y.tab.c"
     break;
 
   case 25: /* svg_list: svg  */
@@ -1963,7 +1973,7 @@ yyreduce:
           {
         (yyval.svg_list) = new_svg_list((yyvsp[0].svg));
     }
-#line 1967 "src/y.tab.c"
+#line 1977 "src/y.tab.c"
     break;
 
   case 26: /* svg_coord: NUMBER COMMA NUMBER  */
@@ -1971,7 +1981,7 @@ yyreduce:
                         {
     	(yyval.svg_coord) = new_svg_coord((yyvsp[-2].number), (yyvsp[0].number));
     }
-#line 1975 "src/y.tab.c"
+#line 1985 "src/y.tab.c"
     break;
 
   case 27: /* svg: LINE svg_coord svg_coord STR  */
@@ -1982,7 +1992,7 @@ yyreduce:
         (yyval.svg) = new_svg_inst(Line, svg_coord_list);
 	(yyval.svg)->color_stroke = (yyvsp[0].text);
    }
-#line 1986 "src/y.tab.c"
+#line 1996 "src/y.tab.c"
     break;
 
   case 28: /* svg: POLYLINE svg_coord_list STR  */
@@ -1991,7 +2001,7 @@ yyreduce:
 	(yyval.svg) = new_svg_inst(Polyline,(yyvsp[-1].svg_coord_list));
 	(yyval.svg)->color_stroke = (yyvsp[0].text);
    }
-#line 1995 "src/y.tab.c"
+#line 2005 "src/y.tab.c"
     break;
 
   case 29: /* svg: POLYGON svg_coord_list STR STR  */
@@ -2001,7 +2011,7 @@ yyreduce:
 	(yyval.svg)->color_fill = (yyvsp[-1].text);
 	(yyval.svg)->color_stroke = (yyvsp[0].text);
    }
-#line 2005 "src/y.tab.c"
+#line 2015 "src/y.tab.c"
     break;
 
   case 30: /* svg: CIRCLE svg_coord NUMBER STR STR  */
@@ -2011,7 +2021,7 @@ yyreduce:
 	(yyval.svg)->color_fill = (yyvsp[-1].text);
 	(yyval.svg)->color_stroke = (yyvsp[0].text);
    }
-#line 2015 "src/y.tab.c"
+#line 2025 "src/y.tab.c"
     break;
 
   case 31: /* svg: ELLIPSE svg_coord NUMBER NUMBER STR STR  */
@@ -2021,7 +2031,7 @@ yyreduce:
 	(yyval.svg)->color_fill = (yyvsp[-1].text);
 	(yyval.svg)->color_stroke = (yyvsp[0].text);
    }
-#line 2025 "src/y.tab.c"
+#line 2035 "src/y.tab.c"
     break;
 
   case 32: /* svg: RECT svg_coord NUMBER NUMBER STR STR  */
@@ -2031,7 +2041,7 @@ yyreduce:
 	(yyval.svg)->color_fill = (yyvsp[-1].text);
 	(yyval.svg)->color_stroke = (yyvsp[0].text);
    }
-#line 2035 "src/y.tab.c"
+#line 2045 "src/y.tab.c"
     break;
 
   case 33: /* svg: XSVG_TEXT svg_coord STR STR STR  */
@@ -2042,7 +2052,7 @@ yyreduce:
 	(yyval.svg)->anchor = (yyvsp[-1].text);
 	(yyval.svg)->text = (yyvsp[-2].text);
    }
-#line 2046 "src/y.tab.c"
+#line 2056 "src/y.tab.c"
     break;
 
   case 34: /* svg_coord_list: svg_coord svg_coord_list  */
@@ -2051,7 +2061,7 @@ yyreduce:
         (yyval.svg_coord_list) = new_svg_coord_list((yyvsp[-1].svg_coord));
         (yyval.svg_coord_list)->next = (yyvsp[0].svg_coord_list);
     }
-#line 2055 "src/y.tab.c"
+#line 2065 "src/y.tab.c"
     break;
 
   case 35: /* svg_coord_list: svg_coord  */
@@ -2067,7 +2077,7 @@ yyreduce:
     // } | svg_coord {
 	// $$ = new_svg_coord_list($1);
     }
-#line 2071 "src/y.tab.c"
+#line 2081 "src/y.tab.c"
     break;
 
   case 36: /* block_list: block BLANK_LINE block_list  */
@@ -2081,7 +2091,7 @@ yyreduce:
             (yyval.dom_list)->next = (yyvsp[0].dom_list);
         }
     }
-#line 2085 "src/y.tab.c"
+#line 2095 "src/y.tab.c"
     break;
 
   case 37: /* block_list: block NEWLINE block_list  */
@@ -2095,7 +2105,7 @@ yyreduce:
             (yyval.dom_list)->next = (yyvsp[0].dom_list);
         }
     }
-#line 2099 "src/y.tab.c"
+#line 2109 "src/y.tab.c"
     break;
 
   case 38: /* block_list: block  */
@@ -2103,7 +2113,7 @@ yyreduce:
             {
         (yyval.dom_list) = new_dom_list((yyvsp[0].dom));
     }
-#line 2107 "src/y.tab.c"
+#line 2117 "src/y.tab.c"
     break;
 
   case 39: /* document: block_list  */
@@ -2112,11 +2122,11 @@ yyreduce:
     dom_root = (yyval.dom) = new_dom(Document, (yyvsp[0].dom_list));
     YYACCEPT;
 }
-#line 2116 "src/y.tab.c"
+#line 2126 "src/y.tab.c"
     break;
 
 
-#line 2120 "src/y.tab.c"
+#line 2130 "src/y.tab.c"
 
         default: break;
       }
@@ -2197,7 +2207,7 @@ yyerrlab:
           }
         yyerror (yymsgp);
         if (yysyntax_error_status == YYENOMEM)
-          YYNOMEM;
+          goto yyexhaustedlab;
       }
     }
 
@@ -2233,7 +2243,6 @@ yyerrorlab:
      label yyerrorlab therefore never appears in user code.  */
   if (0)
     YYERROR;
-  ++yynerrs;
 
   /* Do not reclaim the symbols of the rule whose action triggered
      this YYERROR.  */
@@ -2298,7 +2307,7 @@ yyerrlab1:
 `-------------------------------------*/
 yyacceptlab:
   yyresult = 0;
-  goto yyreturnlab;
+  goto yyreturn;
 
 
 /*-----------------------------------.
@@ -2306,22 +2315,24 @@ yyacceptlab:
 `-----------------------------------*/
 yyabortlab:
   yyresult = 1;
-  goto yyreturnlab;
+  goto yyreturn;
 
 
-/*-----------------------------------------------------------.
-| yyexhaustedlab -- YYNOMEM (memory exhaustion) comes here.  |
-`-----------------------------------------------------------*/
+#if 1
+/*-------------------------------------------------.
+| yyexhaustedlab -- memory exhaustion comes here.  |
+`-------------------------------------------------*/
 yyexhaustedlab:
   yyerror (YY_("memory exhausted"));
   yyresult = 2;
-  goto yyreturnlab;
+  goto yyreturn;
+#endif
 
 
-/*----------------------------------------------------------.
-| yyreturnlab -- parsing is finished, clean up and return.  |
-`----------------------------------------------------------*/
-yyreturnlab:
+/*-------------------------------------------------------.
+| yyreturn -- parsing is finished, clean up and return.  |
+`-------------------------------------------------------*/
+yyreturn:
   if (yychar != YYEMPTY)
     {
       /* Make sure we have latest lookahead translation.  See comments at
