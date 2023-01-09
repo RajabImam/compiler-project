@@ -167,6 +167,15 @@ string code_generation_from_dom(DOM *dom, unsigned int indent)
 
         return html;
     }
+    case Image:
+    {
+	string html = STR("<img src=\"");
+	APPEND_ARR(html, dom->url);
+	APPEND_ARR(html,"\" alt=\"");
+	APPEND_ARR(html, dom->text);
+	APPEND_ARR(html, "\" />");
+	return html;
+    }	    
     case Bold:
     {
         string html = STR("<b>");
