@@ -167,7 +167,16 @@ string code_generation_from_dom(DOM *dom, unsigned int indent)
 
         return html;
     }
-    case Image:
+     case Link:
+    {
+	string html = STR("<a href=\"");
+	APPEND_ARR(html, dom->url);
+	APPEND_ARR(html,"\" >");
+	APPEND_ARR(html, dom->text);
+	APPEND_ARR(html, "</a>");
+	return html;
+    }
+     case Image:
     {
 	string html = STR("<img src=\"");
 	APPEND_ARR(html, dom->url);
