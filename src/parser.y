@@ -242,15 +242,20 @@ svg:
    | CIRCLE svg_coord NUMBER STR STR {
 	$$ = new_svg_inst(Circle, new_svg_coord_list($2));
 	$$->color_fill = $4;
+	$$->width = $3;
 	$$->color_stroke = $5;
    }
    | ELLIPSE svg_coord NUMBER NUMBER STR STR {
 	$$ = new_svg_inst(Ellipse, new_svg_coord_list($2));
 	$$->color_fill = $5;
+	$$->width = $3;
+	$$->height = $4;
 	$$->color_stroke = $6;
    }
    | RECT svg_coord NUMBER NUMBER STR STR {
 	$$ = new_svg_inst(Rect, new_svg_coord_list($2));
+	$$->width = $3;
+	$$->height = $4;
 	$$->color_fill = $5;
 	$$->color_stroke = $6;
    }
