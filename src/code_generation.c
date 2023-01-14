@@ -255,7 +255,7 @@ string code_generation_from_dom(DOM *dom, unsigned int indent) {
 
             return html;
         }
-        case Header1: {
+	case Header1: {
             string html = STR("");
             add_indentation(html, indent);
 
@@ -483,7 +483,7 @@ string code_generation_from_dom(DOM *dom, unsigned int indent) {
             return html;
         }
         case HRule: {
-            string html = STR(" ");
+            string html = STR("");
             add_indentation(html, indent);
 
             APPEND_ARR(html, "<hr/>\n");

@@ -161,7 +161,10 @@ paragraph:
     }
     | line { $$ = $1; };
 block:
-    H1 TEXT {
+    HR {
+    	$$ = new_dom(HRule, NULL);
+    }
+    | H1 TEXT {
         $$ = new_dom(Header1, NULL);
         $$->text = $2;
     }
